@@ -5,5 +5,6 @@ pragma solidity ^0.8.15;
 /// @author Elizao, irwingtello, leandrogavidia, mektigboy
 /// @notice ...
 /// @dev ...
+
 contract Whitelist {
 }
