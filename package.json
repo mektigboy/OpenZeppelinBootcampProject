@@ -4,7 +4,10 @@
   "description": "OpenZeppelin team project.",
   "main": "index.js",
   "repository": "https://github.com/mektigboy/OpenZeppelinWhitelistProject.git",
-  "author": "mektigboy <mektigboy@protonmail.com>",
+  "authors": [
+    "irwingtello <irwingtello@hotmail.com>",
+    "mektigboy <mektigboy@protonmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "hardhat": "^2.10.1"
