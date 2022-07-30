@@ -5,7 +5,9 @@
   "main": "index.js",
   "repository": "https://github.com/mektigboy/OpenZeppelinWhitelistProject.git",
   "authors": [
+    "Elizao <>",
     "irwingtello <irwingtello@hotmail.com>",
+    "leandrogavidia <leandergs1234@gmail.com>",
     "mektigboy <mektigboy@protonmail.com>"
   ],
   "license": "MIT",
