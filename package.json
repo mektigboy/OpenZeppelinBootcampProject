@@ -1,14 +1,15 @@
 {
-  "name": "OpenZeppelinWhitelistProject",
+  "name": "OpenZeppelin Whitelist Project",
   "version": "1.0.0",
   "description": "OpenZeppelin team project.",
   "main": "index.js",
   "repository": "https://github.com/mektigboy/OpenZeppelinWhitelistProject.git",
   "authors": [
-    "Elizao <>",
-    "irwingtello <irwingtello@hotmail.com>",
-    "leandrogavidia <leandergs1234@gmail.com>",
-    "mektigboy <mektigboy@protonmail.com>"
+    "antovanFI",
+    "Elizao",
+    "irwingtello",
+    "leandrogavidia",
+    "mektigboy"
   ],
   "license": "MIT",
   "dependencies": {},
