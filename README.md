@@ -30,7 +30,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 2. Install dependencies using Yarn.
 
 ```
-$ yarn
+yarn
 ```
 
 <br/>
