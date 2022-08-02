@@ -1,0 +1,6 @@
+artifacts
+node_modules
+cache
+package.json
+README.md
+.*
