@@ -4,7 +4,7 @@ const BASE_FEE = "250000000000000000"; // 0.25 ETH
 const GAS_PRICE_LINK = 1e9;
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
-    const { deploy, log } = deployments;
+    const { deploy } = deployments;
     const { deployer } = await getNamedAccounts();
     const chainId = network.config.chainId;
 
