@@ -41,7 +41,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         tokenUris,
     ];
 
-    const random = await deploy("Random", {
+    const random = await deploy("RandomNFTGenerator", {
         from: deployer,
         log: true,
         args: args,
