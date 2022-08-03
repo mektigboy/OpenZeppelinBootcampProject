@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "Whitelist",
+  "sourceName": "contracts/Whitelist.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220167e3308dc2032f1bf6d34db67c47edf75a9d93d6762cf78d9e235b1d0e69a2864736f6c634300080f0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220167e3308dc2032f1bf6d34db67c47edf75a9d93d6762cf78d9e235b1d0e69a2864736f6c634300080f0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "RandomNFTGenerator",
+  "sourceName": "contracts/RandomNFTGenerator.sol",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212208b0736d667429327e0c86ec7612df6781d39a24f1cc1d85486690e6d476349b164736f6c634300080f0033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212208b0736d667429327e0c86ec7612df6781d39a24f1cc1d85486690e6d476349b164736f6c634300080f0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
