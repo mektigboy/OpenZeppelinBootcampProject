@@ -1,7 +1,7 @@
 {
   "name": "openzeppelin-whitelist-project",
   "version": "1.0.0",
-  "description": "OpenZeppelin team project.",
+  "description": "OpenZeppelin bootcamp project.",
   "main": "index.js",
   "repository": "https://github.com/mektigboy/OpenZeppelinWhitelistProject.git",
   "authors": [
