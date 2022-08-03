@@ -1,0 +1,11 @@
+{
+    "name": "3",
+    "description": "Three",
+    "image": "ipfs://bafkreidwtsmhx6wsqikyr3trefghzobajf2e2fwwe6abgcwfoxtda36zn4",
+    "attributes": [
+        {
+            "trait": "Common",
+            "value": 10
+        }
+    ]
+}

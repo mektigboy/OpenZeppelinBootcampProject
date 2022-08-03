@@ -1,0 +1,11 @@
+{
+    "name": "2",
+    "description": "Two",
+    "image": "ipfs://bafkreihqw7x2y5fvs2rp5qtzredbs3jmpwb6yojyl7yuebaaxzmynwj6ja",
+    "attributes": [
+        {
+            "trait": "Rare",
+            "value": 100
+        }
+    ]
+}
