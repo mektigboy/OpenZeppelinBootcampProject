@@ -14,7 +14,7 @@ error RandomNFTGenerator__TransferFailed();
 
 /// @title Random NFT Generator
 /// @author antovanFI, Elizao, irwingtello, leandrogavidia, mektigboy
-/// @notice Generates NFTs with randomness, and store them in a decentralized way.
+/// @notice Generates NFTs with randomness, and it stores them in a decentralized way.
 /// @dev This contract utilizes Chainlink VRF v2 for randomness.
 /// URIs point to IPFS.
 /// Imports contracts from OpenZeppelin.
