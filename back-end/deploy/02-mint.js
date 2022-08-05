@@ -14,7 +14,7 @@ module.exports = async function ({ getNamedAccounts }) {
     await new Promise(async function (resolve, reject) {
         setTimeout(
             () => reject("Timeout: event <NFTMinted> did not fire."),
-            300000 // 5 minutes
+            100000 // 300000 // 5 minutes
         );
         randomNFTGenerator.once("NFTMinted", async function () {
             resolve();
