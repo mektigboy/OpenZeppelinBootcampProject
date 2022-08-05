@@ -17,3 +17,18 @@
   --color-black: #101010;
   --color-green: #00ff00;
 }
+
+body {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 20px;
+  background: var(--color-black);
+  color: var(--color-green);
+}
+
+a {
+  color: var(--color-green);
+}
+
+::webkit-scrollbar {
+  display: none;
+}
