@@ -13,6 +13,9 @@ const networkConfig = {
         mintFee: "10000000000000000", // 0.01 ETH
         name: "rinkeby",
         subscriptionId: "9747",
+        maxWhitelistedAddresses: "10",
+        maxNFTLimit: "20",
+        maxNFTLimitWhitelist: "10",
     },
     31337: {
         callbackGasLimit: "500000", // 500,000 gas
@@ -21,6 +24,9 @@ const networkConfig = {
             "0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc", // 30 gwei
         mintFee: "10000000000000000", // 0.01 ETH
         name: "localhost",
+        maxWhitelistedAddresses: "10",
+        maxNFTLimit: "20",
+        maxNFTLimitWhitelist: "10",
     },
     // Arbitrum
     // Polygon
