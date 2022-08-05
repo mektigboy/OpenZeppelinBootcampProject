@@ -48,7 +48,28 @@ function App() {
 
   return (
     <div className="App">
-      {accounts.length && (
+      <div className="box">
+        <div className="top">
+          openzeppelin bootcamp project
+          <a>connect wallet</a>
+        </div>
+        <div className="middle">
+          <div className="buttons">
+            <button className="margin-right">access whitelist</button>
+            <button>mint</button>
+          </div>
+        </div>
+        <div className="bottom">
+          <div>copyright © 2022 - team one.</div>
+          <div className="links">
+            <a className="margin-right">contract address</a>
+            <div className="margin-right">/</div>
+            <a>github</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    /*{ {accounts.length && (
         <div>
           <button onClick={() => setMintAmount(mintAmount - 1)}>-</button>
           {mintAmount}
@@ -56,7 +77,7 @@ function App() {
           <button onClick={handleMint}>Mint</button>
         </div>
       )}
-    </div>
+    </div> }*/
   );
 }
 
