@@ -4,38 +4,38 @@ module.exports = async function ({ getNamedAccounts }) {
     const { deployer } = await getNamedAccounts();
     const chainId = network.config.chainId;
 
-    const randomNFTGenerator = await ethers.getContract("RandomNFTGenerator", deployer);
-    const mintFee = await randomNFTGenerator.getMintFee();
-    const randomMintTransaction = await randomNFTGenerator.requestNFT({
+    const abitoRandomNFTGenerator = await ethers.getContract("AbitoRandomNFTGenerator", deployer);
+    const mintFee = await abitoRandomNFTGenerator.getMintFee();
+    const abitoMintTransaction = await abitoRandomNFTGenerator.mintWhitelist({
         value: mintFee.toString(),
     });
-    const randomMintTransactionReceipt = await randomMintTransaction.wait(1);
+    const abitoMintTransactionReceipt = await abitoMintTransaction.wait(1);
 
     await new Promise(async function (resolve, reject) {
         setTimeout(
             () => reject("Timeout: event <NFTMinted> did not fire."),
             100000 // 300000 // 5 minutes
         );
-        randomNFTGenerator.once("NFTMinted", async function () {
+        abitoRandomNFTGenerator.once("NFTMinted", async function () {
             resolve();
         });
 
         if (chainId == 31337) {
             const requestId =
-                randomMintTransactionReceipt.events[1].args.requestId.toString();
+                abitoMintTransactionReceipt.events[1].args.requestId.toString();
             const coordinatorMock = await ethers.getContract(
                 "VRFCoordinatorV2Mock",
                 deployer
             );
             await coordinatorMock.fulfillRandomWords(
                 requestId,
-                randomNFTGenerator.address
+                abitoRandomNFTGenerator.address
             );
         }
     });
 
     console.log(
-        `Random NFT index 0 has token URI: ${await randomNFTGenerator.tokenURI(0)}`
+        `Random NFT index 0 has token URI: ${await abitoRandomNFTGenerator.tokenURI(0)}`
     );
 };
 
