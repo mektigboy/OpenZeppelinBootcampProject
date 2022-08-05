@@ -31,6 +31,7 @@ p {
 a {
   color: var(--color-green);
   cursor: pointer;
+  text-decoration: none;
 }
 
 button {
