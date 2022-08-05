@@ -1,9 +1,7 @@
 const developmentChains = ["hardhat", "localhost"];
 
-const DECIMALS = "18";
 const BASE_FEE = "250000000000000000"; // 0.25 LINK
 const GAS_PRICE_LINK = 1e9; // 0.000000001 LINK per gas
-const INITIAL_PRICE = "200000000000000000000"; // 2e20
 
 const networkConfig = {
     4: {
@@ -30,9 +28,7 @@ const networkConfig = {
 
 module.exports = {
     developmentChains,
-    DECIMALS,
     BASE_FEE,
     GAS_PRICE_LINK,
-    INITIAL_PRICE,
     networkConfig,
 };
