@@ -18,20 +18,36 @@ error RandomNFTGenerator__TransferFailed();
 /// @dev This contract utilizes Chainlink VRF v2 for randomness.
 /// URIs point to IPFS.
 /// Imports contracts from OpenZeppelin.
-contract RandomNFTGenerator is ERC721URIStorage, VRFConsumerBaseV2 {
-    VRFCoordinatorV2Interface immutable i_VRFCoordinator;
-    bytes32 immutable i_gasLane;
-    uint64 immutable i_subscriptionId;
-    uint32 immutable i_callbackGasLimit;
+contract RandomNFTGenerator is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
+    // Type Declaration
+    enum Selection {
+        EPIC,
+        RARE,
+        COMMON
+    }
 
+    // Chainlink VRF Variables
+    VRFCoordinatorV2Interface immutable i_coordinator;
+    uint64 immutable i_subscriptionId;
+    bytes32 immutable i_gasLane;
+    uint32 immutable i_callbackGasLimit;
     uint16 constant REQ_CONFIRMATIONS = 3;
     uint32 constant NUM_WORDS = 1;
-    uint256 constant MAX_CHANCE = 1000;
 
-    mapping(uint256 => address) s_requestIdToSender;
-    string[3] public s_tokenURIs;
-
+    // NFT Variables
+    uint256 i_mintFee;
     uint256 public s_tokenCounter;
+    mapping(uint256 => Selection) private s_tokenIdToBreed;
+    uint256 internal constant MAX_CHANCE = 1000;
+    string[] internal s_tokenURIs;
+    bool s_initialized;
+
+    // VRF Helpers
+    mapping(uint256 => address) public s_requestIdToSender;
+
+    // Events
+    event NFTRequested(uint256 indexed requestId, address requester);
+    event NFTMinted(Selection selection, address minter);
 
     constructor(
         address VRFCoordinatorV2,
