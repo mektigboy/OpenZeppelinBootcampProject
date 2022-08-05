@@ -18,7 +18,7 @@ error AbitoRandomNFTGenerator__TransferFailed();
 
 /// @title AbitoRandomNFTGenerator
 /// @author antovanFI, Elizao, irwingtello, leandrogavidia, mektigboy
-/// @notice Generates NFTs with randomness, and store them in a decentralized way.
+/// @notice Generates NFTs with randomness. Store them in a decentralized way.
 /// @dev This contract utilizes Chainlink VRF v2 for randomness.
 /// URIs point to IPFS.
 /// Imports from OpenZeppelin.
@@ -226,13 +226,9 @@ contract AbitoRandomNFTGenerator is
         }
     }
 
-    function mintWhitelist(uint256 requestId, uint256[] memory randomWords)
-        public
-        verifyWhitelistLimit
-    {
+    function mintWhitelist() public payable verifyWhitelistLimit {
         require(isWhitelisted(msg.sender), "User is not whitelisted.");
         requestNFT();
-        fulfillRandomWords(requestId, randomWords);
     }
 
     function publicMint(uint256 requestId, uint256[] memory randomWords)
@@ -240,7 +236,6 @@ contract AbitoRandomNFTGenerator is
         enablePublicMinting
     {
         requestNFT();
-
         fulfillRandomWords(requestId, randomWords);
     }
 
