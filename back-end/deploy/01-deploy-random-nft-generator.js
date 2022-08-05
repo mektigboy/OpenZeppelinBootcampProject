@@ -61,4 +61,4 @@ module.exports = async function ({ deployments, getNamedAccounts }) {
     }
 };
 
-module.exports.tags = ["all", "main", "random-nft"];
+module.exports.tags = ["all", "main", "random-nft-generator"];
