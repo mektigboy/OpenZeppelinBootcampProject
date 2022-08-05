@@ -9,8 +9,6 @@
   border: 0;
   outline: 0;
   box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
 }
 
 :root {
@@ -21,12 +19,34 @@
 body {
   font-family: "Share Tech Mono", monospace;
   font-size: 20px;
+  line-height: 25px;
   background: var(--color-black);
   color: var(--color-green);
 }
 
+p {
+  font-size: 15px;
+}
+
 a {
   color: var(--color-green);
+  cursor: pointer;
+}
+
+button {
+  padding: 9px 15px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 20px;
+  line-height: 25px;
+  border: 1px solid var(--color-green);
+  background-color: transparent;
+  color: var(--color-green);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
 }
 
 ::webkit-scrollbar {
