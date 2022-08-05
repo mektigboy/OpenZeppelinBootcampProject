@@ -8,8 +8,8 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "hardhat/console.sol";
 
 error RandomNFTGenerator__AlreadyInitialized();
-error RandomNFTGenerator__RangeOutOfScope();
 error RandomNFTGenerator__NotEnoughETHSent();
+error RandomNFTGenerator__RangeOutOfScope();
 error RandomNFTGenerator__TransferFailed();
 
 /// @title Random NFT Generator
@@ -71,8 +71,11 @@ contract RandomNFTGenerator is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
     // Mint a random NFT:
 
     // 1. Get random number.
-    function requestObject() public returns (uint256 requestId) {
-        requestId = i_VRFCoordinator.requestRandomWords(
+    function requestNFT() public payable returns (uint256 requestId) {
+        if (msg.value < i_mintFee) {
+            revert RandomNFTGenerator__NotEnoughETHSent();
+        }
+        requestId = i_coordinator.requestRandomWords(
             i_gasLane,
             i_subscriptionId,
             REQ_CONFIRMATIONS,
@@ -80,6 +83,7 @@ contract RandomNFTGenerator is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
             NUM_WORDS
         );
         s_requestIdToSender[requestId] = msg.sender;
+        emit NFTRequested(requestId, msg.sender);
     }
 
     // 2. Mint NFT.
@@ -87,58 +91,77 @@ contract RandomNFTGenerator is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
         internal
         override
     {
-        // Owner of the object.
         address tokenOwner = s_requestIdToSender[requestId];
-        // Asign this NFT a <tokenId>.
         uint256 newTokenId = s_tokenCounter;
         s_tokenCounter = s_tokenCounter + 1;
-        uint256 moddedRng = randomWords[0] % MAX_CHANCE; // Random number generated.
-        uint256 selection = selectFromModdedRng(moddedRng);
+        uint256 moddedRNG = randomWords[0] % MAX_CHANCE;
+        Selection selection = selectionFromModdedRNG(moddedRNG);
         _safeMint(tokenOwner, newTokenId);
-        _setTokenURI(newTokenId, s_tokenURIs[selection]);
+        _setTokenURI(newTokenId, s_tokenURIs[uint256(selection)]);
+        emit NFTMinted(selection, tokenOwner);
     }
 
-    function getChanceArray() public pure returns (uint256[3] memory) {
+    // Withdraw ETH from contract.
+    function withdraw() public onlyOwner {
+        uint256 amount = address(this).balance;
+        (bool success, ) = payable(msg.sender).call{value: amount}("");
+        if (!success) {
+            revert RandomNFTGenerator__TransferFailed();
+        }
+    }
+
+    function setChanceArray() public pure returns (uint256[3] memory) {
         // 0 - 10 = Epic
         // 11 - 100 = Rare
         // 101 - 1000 = Common
         return [10, 100, MAX_CHANCE];
     }
 
-    function selectFromModdedRng(uint256 moddedRng)
+    // Select which type of NFT will be minted based on the random number.
+    function selectionFromModdedRNG(uint256 moddedRNG)
         public
         pure
-        returns (uint256)
+        returns (Selection)
     {
         uint256 cumulativeSum = 0;
-        uint256[3] memory chanceArray = getChanceArray();
+        uint256[3] memory chanceArray = setChanceArray();
 
         for (uint256 i = 0; i < chanceArray.length; i++) {
             if (
-                moddedRng >= cumulativeSum &&
-                moddedRng < cumulativeSum + chanceArray[i]
-            ) return i;
-            cumulativeSum = cumulativeSum + chanceArray[i];
+                moddedRNG >= cumulativeSum &&
+                moddedRNG < cumulativeSum + chanceArray[i]
+            ) {
+                return Selection(i);
+            }
+            cumulativeSum = chanceArray[i];
         }
+        revert RandomNFTGenerator__RangeOutOfScope();
     }
 
-    function getVRFCoordinator()
-        public
-        view
-        returns (VRFCoordinatorV2Interface)
-    {
-        return i_VRFCoordinator;
+    // Initializes contract.
+    function _initializeContract(string[3] memory tokenURIs) private {
+        if (s_initialized) {
+            revert RandomNFTGenerator__AlreadyInitialized();
+        }
+        s_tokenURIs = tokenURIs;
+        s_initialized = true;
     }
 
-    function getGasLane() public view returns (bytes32) {
-        return i_gasLane;
+    // Getters:
+
+    function getInitialized() public view returns (bool) {
+        return s_initialized;
     }
 
-    function getSubscriptionID() public view returns (uint64) {
-        return i_subscriptionId;
+    function getMintFee() public view returns (uint256) {
+        return i_mintFee;
     }
 
-    function getCallbackGasLimit() public view returns (uint32) {
-        return i_callbackGasLimit;
+    function getTokenCounter() public view returns (uint256) {
+        return s_tokenCounter;
+    }
+
+    function getTokenURIs(uint256 index) public view returns (string memory) {
+        return s_tokenURIs[index];
     }
 }
