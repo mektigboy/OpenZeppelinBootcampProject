@@ -50,21 +50,22 @@ contract RandomNFTGenerator is ERC721URIStorage, Ownable, VRFConsumerBaseV2 {
     event NFTMinted(Selection selection, address minter);
 
     constructor(
-        address VRFCoordinatorV2,
-        bytes32 gasLane,
+        address coordinator,
         uint64 subscriptionId,
+        bytes32 gasLane,
         uint32 callbackGasLimit,
-        string[3] memory tokenURIs
+        string[3] memory tokenURIs, // Set token URIs in the constructor of our contract.
+        uint256 mintFee
     )
         ERC721("OpenZeppelin Bootcamp Project", "OBP")
-        VRFConsumerBaseV2(VRFCoordinatorV2)
+        VRFConsumerBaseV2(coordinator)
     {
-        i_VRFCoordinator = VRFCoordinatorV2Interface(VRFCoordinatorV2);
-        i_gasLane = gasLane;
+        i_coordinator = VRFCoordinatorV2Interface(coordinator);
         i_subscriptionId = subscriptionId;
+        i_gasLane = gasLane;
+        i_mintFee = mintFee;
         i_callbackGasLimit = callbackGasLimit;
-        s_tokenCounter = 0;
-        s_tokenURIs = tokenURIs;
+        _initializeContract(tokenURIs);
     }
 
     // Mint a random NFT:
