@@ -2,8 +2,15 @@
 pragma solidity ^0.8.15;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+import "hardhat/console.sol";
+
+error RandomNFTGenerator__AlreadyInitialized();
+error RandomNFTGenerator__RangeOutOfScope();
+error RandomNFTGenerator__NotEnoughETHSent();
+error RandomNFTGenerator__TransferFailed();
 
 /// @title Random NFT Generator
 /// @author antovanFI, Elizao, irwingtello, leandrogavidia, mektigboy
