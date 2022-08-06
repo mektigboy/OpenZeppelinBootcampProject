@@ -231,12 +231,11 @@ contract AbitoRandomNFTGenerator is
         requestNFT();
     }
 
-    function publicMint(uint256 requestId, uint256[] memory randomWords)
-        public
+    function publicMint()
+        public payable
         enablePublicMinting
     {
         requestNFT();
-        fulfillRandomWords(requestId, randomWords);
     }
 
     function _beforeTokenTransfer(
