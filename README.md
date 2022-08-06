@@ -36,6 +36,10 @@ yarn hardhat compile
 ```
 yarn hardhat deploy
 ```
+4. To deploy contract to a supported mainnet or testnet use:
+```
+yarn hardhat deploy --network <name>
+```
 
 ## Presentation
 
