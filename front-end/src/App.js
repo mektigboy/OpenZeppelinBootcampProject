@@ -1,5 +1,5 @@
 import "./App.css";
-import contractABI from "../../back-end/deployments/rinkeby/AbitoRandomNFTGenerator.json";
+import contractABI from "./AbitoRandomNFTGenerator.json";
 import { ethers, BigNumber } from "ethers";
 import { useEffect, useState } from "react";
 
