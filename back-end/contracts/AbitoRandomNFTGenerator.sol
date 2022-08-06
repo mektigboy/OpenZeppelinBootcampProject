@@ -194,7 +194,7 @@ contract AbitoRandomNFTGenerator is
     // Mint a random NFT:
 
     // 1. Get random number.
-    function whitelistMint()
+    function whitelistRequest()
         public
         payable
         verifyWhitelistLimit
@@ -215,13 +215,16 @@ contract AbitoRandomNFTGenerator is
         emit NFTRequested(requestId, msg.sender);
     }
 
-    function publicMint()
+    // Public Request
+    function publicRequest()
         public
         payable
         enablePublicMinting
-        requireMintFee
         returns (uint256 requestId)
     {
+        if (msg.value < i_mintFee) {
+            revert AbitoRandomNFTGenerator__NotEnoughETHSent();
+        }
         requestId = i_coordinator.requestRandomWords(
             i_gasLane,
             i_subscriptionId,
@@ -246,14 +249,6 @@ contract AbitoRandomNFTGenerator is
         _safeMint(tokenOwner, newTokenId);
         _setTokenURI(newTokenId, s_tokenURIs[uint256(selection)]);
         emit NFTMinted(selection, tokenOwner);
-    }
-
-    function withdraw() public onlyOwner {
-        uint256 amount = address(this).balance;
-        (bool success, ) = payable(msg.sender).call{value: amount}("");
-        if (!success) {
-            revert AbitoRandomNFTGenerator__TransferFailed();
-        }
     }
 
     function _beforeTokenTransfer(
@@ -300,12 +295,22 @@ contract AbitoRandomNFTGenerator is
         revert AbitoRandomNFTGenerator__RangeOutOfScope();
     }
 
+    // Initialize
     function _initializeContract(string[3] memory tokenURIs) private {
         if (s_initialized) {
             revert AbitoRandomNFTGenerator__AlreadyInitialized();
         }
         s_tokenURIs = tokenURIs;
         s_initialized = true;
+    }
+
+    // Withdraw
+    function withdraw() public onlyOwner {
+        uint256 amount = address(this).balance;
+        (bool success, ) = payable(msg.sender).call{value: amount}("");
+        if (!success) {
+            revert AbitoRandomNFTGenerator__TransferFailed();
+        }
     }
 
     // Getters:
