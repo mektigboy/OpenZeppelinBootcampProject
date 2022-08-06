@@ -13,6 +13,7 @@ import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 error AbitoRandomNFTGenerator__AlreadyInitialized();
 error AbitoRandomNFTGenerator__NotEnoughETHSent();
+error AbitoRandomNFTGenerator__NotWhitelisted();
 error AbitoRandomNFTGenerator__RangeOutOfScope();
 error AbitoRandomNFTGenerator__TransferFailed();
 
@@ -39,7 +40,6 @@ contract AbitoRandomNFTGenerator is
     // Whitelist Variables
     using Counters for Counters.Counter;
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     Counters.Counter private _tokenIdCounter;
 
     uint256 public maxNumberOfWhitelistedAddresses;
@@ -89,6 +89,13 @@ contract AbitoRandomNFTGenerator is
         _;
     }
 
+    modifier requireMintFee() {
+        if (msg.value < i_mintFee) {
+            revert AbitoRandomNFTGenerator__NotEnoughETHSent();
+        }
+        _;
+    }
+
     constructor(
         uint256 _maxWhitelistedAddresses,
         uint256 _maxNFTLimit,
@@ -112,7 +119,6 @@ contract AbitoRandomNFTGenerator is
 
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);
-        _grantRole(MINTER_ROLE, msg.sender);
 
         maxNumberOfWhitelistedAddresses = _maxWhitelistedAddresses;
         maxNFTLimit = _maxNFTLimit;
@@ -138,7 +144,7 @@ contract AbitoRandomNFTGenerator is
         );
         require(
             numberOfAddressesWhitelisted < maxNumberOfWhitelistedAddresses,
-            "Error: Whitelist limit exceeded."
+            "Whitelist limit exceeded."
         );
         whitelistedAddresses[_addressToWhitelist] = true;
         numberOfAddressesWhitelisted += 1;
@@ -150,7 +156,7 @@ contract AbitoRandomNFTGenerator is
     {
         require(
             whitelistedAddresses[_addressToRemove],
-            "Sender is not whitelisted.addmod"
+            "Sender is not whitelisted."
         );
         whitelistedAddresses[_addressToRemove] = false;
         numberOfAddressesWhitelisted -= 1;
@@ -188,10 +194,34 @@ contract AbitoRandomNFTGenerator is
     // Mint a random NFT:
 
     // 1. Get random number.
-    function requestNFT() public payable returns (uint256 requestId) {
-        if (msg.value < i_mintFee) {
-            revert AbitoRandomNFTGenerator__NotEnoughETHSent();
+    function whitelistMint()
+        public
+        payable
+        verifyWhitelistLimit
+        requireMintFee
+        returns (uint256 requestId)
+    {
+        if (!isWhitelisted(msg.sender)) {
+            revert AbitoRandomNFTGenerator__NotWhitelisted();
         }
+        requestId = i_coordinator.requestRandomWords(
+            i_gasLane,
+            i_subscriptionId,
+            REQ_CONFIRMATIONS,
+            i_callbackGasLimit,
+            NUM_WORDS
+        );
+        s_requestIdToSender[requestId] = msg.sender;
+        emit NFTRequested(requestId, msg.sender);
+    }
+
+    function publicMint()
+        public
+        payable
+        enablePublicMinting
+        requireMintFee
+        returns (uint256 requestId)
+    {
         requestId = i_coordinator.requestRandomWords(
             i_gasLane,
             i_subscriptionId,
@@ -224,18 +254,6 @@ contract AbitoRandomNFTGenerator is
         if (!success) {
             revert AbitoRandomNFTGenerator__TransferFailed();
         }
-    }
-
-    function mintWhitelist() public payable verifyWhitelistLimit {
-        require(isWhitelisted(msg.sender), "User is not whitelisted.");
-        requestNFT();
-    }
-
-    function publicMint()
-        public payable
-        enablePublicMinting
-    {
-        requestNFT();
     }
 
     function _beforeTokenTransfer(
