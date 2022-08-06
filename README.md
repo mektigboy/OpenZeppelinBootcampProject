@@ -42,7 +42,7 @@ yarn hardhat compile
 4. To deploy contracts to a local Hardhat network use the command:
 
 ```
-yarn hardhat deploy
+yarn hardhat deploy --tags main
 ```
 
 5. To deploy contracts to a supported mainnet or testnet use:
