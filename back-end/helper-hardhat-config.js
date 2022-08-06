@@ -15,7 +15,7 @@ const networkConfig = {
             "0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc",
         mintFee: "10000000000000000", // 0.01 ETH
         name: "rinkeby",
-        subscriptionId: process.env.SUBSCRIPTION_ID,
+        subscriptionId: "9747",
         maxWhitelistedAddresses: "10",
         maxNFTLimit: "20",
         maxNFTLimitWhitelist: "10",
