@@ -18,7 +18,7 @@ Each token URI points to the token metadata stored in IPFS.
 We implement a true decentralized way to generate random data using Chainlink VRF V2.
 Also, our contracts use the latest version of Solidity, and the v0.8 OpenZeppelin libraries, which are up-to-date. 
 
-## Project Installation
+## Usage & Installation
 
 1. Clone the repo, and cd into the back-end folder:
 ```
@@ -28,7 +28,10 @@ git clone https://github.com/mektigboy/OpenZeppelinBootcampProject.git && cd bac
 ```
 yarn
 ```
-
+3. To deploy contracts to a local Hardhat network use the command:
+```
+yarn hardhat deploy
+```
 
 ## Presentation
 
