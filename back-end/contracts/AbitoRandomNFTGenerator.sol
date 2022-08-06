@@ -19,7 +19,7 @@ error AbitoRandomNFTGenerator__TransferFailed();
 /// @title AbitoRandomNFTGenerator
 /// @author antovanFI, Elizao, irwingtello, leandrogavidia, mektigboy
 /// @notice Generates NFTs with randomness. Store them in a decentralized way.
-/// @dev This contract utilizes Chainlink VRF v2 for randomness.
+/// @dev This contract utilizes Chainlink VRF v2 to generate random data.
 /// URIs point to IPFS.
 /// Imports from OpenZeppelin.
 contract AbitoRandomNFTGenerator is
