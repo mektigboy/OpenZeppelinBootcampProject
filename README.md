@@ -75,10 +75,9 @@ Nowdays, with the help of Chainlink's VRFs we can implement a true decentralized
 
 2. ### General description of the use of Defender in your project.
 
-   In the project we use Chainlink and Defender, to increase the security of our solution, we use them as follows:
-   Defender : We use sentinel to alert us of suspicious activities or incidences so that we can act within the minting event.
-   Chainlink : Request random numbers to determine the rarity
-   Solidity: We used the Open Zepellin interfaces for ERC721, to avoid workarounds and use audited contracts that served us in the construction of our solution.
+In our project we implement the use of Defender to increase the security of our application.
+Mainly, our application utilizes the Sentinel functionality of Defender; we use it to alert us of suspicious activities or incidences, so our team can act rapidly and accordingly.
+Also, our project uses OpenZeppelin's libraries, to avoid and prevent security issues, as we know, those libraries have already been audited, and they really help us to reinvent the wheel.
 
 3. ### Description of the value that Defender brings to my project.
 
