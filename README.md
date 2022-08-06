@@ -60,6 +60,8 @@ yarn hardhat deploy --tags main --network <name>
 ```
 yarn hardhat deploy --tags mint --network <name>
 ```
+> **Note**
+> If you want to mint and NFT using the command above, you need to set your VRF: https://vrf.chain.link/.
 
 ## Presentation
 
