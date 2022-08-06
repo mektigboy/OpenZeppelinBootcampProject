@@ -49,7 +49,7 @@ contract AbitoRandomNFTGenerator is
 
     uint256 public maxNFTLimit;
     uint256 public maxNFTLimitWhitelist;
-    uint256 public nftMinted;
+    uint256 public mintedNFT;
 
     // Chainlink VRF Variables
     VRFCoordinatorV2Interface immutable i_coordinator;
@@ -76,14 +76,14 @@ contract AbitoRandomNFTGenerator is
 
     // Modifiers
     modifier verifyWhitelistLimit() {
-        require(maxNFTLimitWhitelist <= nftMinted, "Whitelist max. limit.");
+        require(maxNFTLimitWhitelist <= mintedNFT, "Whitelist max. limit.");
         _;
     }
 
     modifier enablePublicMinting() {
-        require(maxNFTLimit <= nftMinted, "No more stock.");
+        require(maxNFTLimit <= mintedNFT, "No more stock.");
         require(
-            maxNFTLimitWhitelist > nftMinted,
+            maxNFTLimitWhitelist > mintedNFT,
             "Whitelist minting is in progress."
         );
         _;
