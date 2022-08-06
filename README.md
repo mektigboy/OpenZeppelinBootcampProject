@@ -24,22 +24,30 @@ Also, our contracts use the latest version of Solidity, and the v0.8 OpenZeppeli
 ```
 git clone https://github.com/mektigboy/OpenZeppelinBootcampProject.git && cd back-end
 ```
+
 2. Install dependencies using Yarn:
 ```
 yarn
 ```
+
 3. To compile contracts use:
 ```
 yarn hardhat compile
 ```
+
 4. To deploy contracts to a local Hardhat network use the command:
 ```
 yarn hardhat deploy
 ```
-4. To deploy contract to a supported mainnet or testnet use:
+
+5. To deploy contracts to a supported mainnet or testnet use:
 ```
 yarn hardhat deploy --network <name>
 ```
+
+> **Note**
+> The command above not only deploys your contract to a supported mainnet or testnet, it also verifies it.
+> You should have your .env file already configured file.
 
 ## Presentation
 
