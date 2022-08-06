@@ -28,7 +28,11 @@ git clone https://github.com/mektigboy/OpenZeppelinBootcampProject.git && cd bac
 ```
 yarn
 ```
-3. To deploy contracts to a local Hardhat network use the command:
+3. To compile contracts use:
+```
+yarn hardhat compile
+```
+4. To deploy contracts to a local Hardhat network use the command:
 ```
 yarn hardhat deploy
 ```
