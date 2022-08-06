@@ -1,9 +1,9 @@
 import "./App.css";
-import contractABI from "./RandomNFTGenerator.json";
+import contractABI from "../../back-end/deployments/rinkeby/AbitoRandomNFTGenerator.json";
 import { ethers, BigNumber } from "ethers";
 import { useEffect, useState } from "react";
 
-const contractAddress = "0x74eA74c0d471ACB88e979b1c6C24B2dE9F7ac4d3"; // Address of the deployed contract.
+const contractAddress = "0xc85ed190568E1542c9cb2f917bE383335716DE32"; // Address of the deployed contract.
 
 function App() {
   const [data, setData] = useState({
@@ -47,21 +47,6 @@ function App() {
     // Set a balance.
     getBalance(account);
   };
-
-  // const [accounts, setAccounts] = useState([]);
-
-  // async function connectAccounts() {
-  //   if (window.ethereum) {
-  //     const accounts = await window.ethereum.request({
-  //       method: "eth_requestAccounts",
-  //     });
-  //     setAccounts(accounts);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   connectAccounts();
-  // }, []);
 
   // // Mint:
 
