@@ -3,7 +3,7 @@
 ## Project Description
 
 An application to randomly mint NFTs based on probability using Chainlink's VRF v2 and OpenZeppelin libraries.
-Each token URI points to the token metadata stored in IPFS.
+Each token URI points to the token metadata stored on IPFS.
 
 ## Authors
 
@@ -13,6 +13,9 @@ Each token URI points to the token metadata stored in IPFS.
 - [leandrogavidia](https://github.com/leandrogavidia)
 - [mektigboy](https://github.com/mektigboy)
 
+## Links
+
+Our application is hosted on IPFS: https://www.mektigboy.com
 ## Innovation
 
 Back in the day, contracts did not have a way to generate truly random data because of the deterministic nature of the EVM.
