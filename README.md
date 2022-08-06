@@ -16,6 +16,8 @@ Each token URI points to the token metadata stored on IPFS.
 ## Links
 
 Our application is hosted on IPFS: https://www.mektigboy.com
+> **Note**
+> We are still working on fixing some issues, the site might not work properly.
 ## Innovation
 
 Back in the day, contracts did not have a way to generate truly random data because of the deterministic nature of the EVM.
