@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+NFT Minting Contract(ERC721) for whitelist and rarity
 
 ## Authors
 
@@ -14,7 +14,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 ## Innovation
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+We use the latest versions of Solidity.
 
 ## Project Installation
 
@@ -29,34 +29,46 @@ yarn
 
 1. ### Does the demo meet the project description?
 
-    loprem ipsum
+   Yes
 
 2. ### Has it been compared against real projects?
 
-    loprem ipsum
+   Yes, some project dont have Open Zepellin Defender
 
 ## Solution
 
 1. ### Solution Description
 
-    loprem ipsum
+    NFT Minting Contract(ERC721) for whitelist and rarity
 
 2. ### General description of the use of Defender in your project.
 
-    loprem ipsum
+   In the project we use Chainlink and Defender, to increase the security of our solution, we use them as follows:
+	Defender : We use sentinel to alert us of suspicious activities or incidences so that we can act within the minting event.
+	Chainlink : Request random numbers to determine the rarity
+	Solidity: We used the Open Zepellin interfaces for ERC721, to avoid workarounds and use audited contracts that served us in the construction of our solution.
 
 3. ### Description of the value that Defender brings to my project.
 
-    loprem ipsum
+    With the use of defender in our project, it will alert us to avoid the loss of important amount of money due to errors in the minting process by the useres and help them.
 
-4. ### Description of why use module <example_admin> defend.
+4. ### Description of why use module Sentinel defender.
 
-    loprem ipsum
+    We use sentinel to alert the community of what is happening with the contract and provide transparency in the minting process.
 
 5. ### Description of how to use the <example_admin> defender module.
 
-    loprem ipsum
+    In order to use Sentinel in our projects, we analyzed which functions were important and determined that they were the following:
+	1.- revokeRole
+	2.- pause
+	3.- renounceRole
+	4.- unPause
+	5.- requestObject
 
 6. ### Do I apply SEC-OPS to my project?
 
-    loprem ipsum
+    We apply Sec-Ops and make sure to put restrictions on whitelisted users who cannot mint earlier and whitelisted users who cannot mint more than allowed.
+
+	This prevents them from running the contract functions through Scanners and breaking the security of the process.
+
+	We also use an efficient use of gas.
