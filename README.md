@@ -2,7 +2,8 @@
 
 ## Project Description
 
-NFT Minting Contract(ERC721) for whitelist and rarity
+An application to randomly mint NFTs based on probability using Chainlink VRF V2 and OpenZeppelin libraries.
+Each token URI points to the token metadata stored in IPFS.
 
 ## Authors
 
@@ -14,16 +15,20 @@ NFT Minting Contract(ERC721) for whitelist and rarity
 
 ## Innovation
 
-We use the latest versions of Solidity.
+We implement a true decentralized way to generate random data using Chainlink VRF V2.
+Also, our contracts use the latest version of Solidity, and the v0.8 OpenZeppelin libraries, which are up-to-date. 
 
 ## Project Installation
 
-1. Clone the repo.
-2. Install dependencies using Yarn.
-
+1. Clone the repo, and cd into the back-end folder:
+```
+git clone https://github.com/mektigboy/OpenZeppelinBootcampProject.git && cd back-end
+```
+2. Install dependencies using Yarn:
 ```
 yarn
 ```
+
 
 ## Presentation
 
